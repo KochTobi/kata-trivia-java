@@ -20,15 +20,15 @@ public class GameBetter implements IGame {
 
    public GameBetter() {
       for (int i = 0; i < 50; i++) {
-         popQuestions.addLast("Pop Question " + i);
-         scienceQuestions.addLast(("Science Question " + i));
-         sportsQuestions.addLast(("Sports Question " + i));
-         rockQuestions.addLast(createRockQuestion(i));
+         popQuestions.addLast(createQuestion("Pop " , i));
+         scienceQuestions.addLast(createQuestion("Science " , i));
+         sportsQuestions.addLast(createQuestion("Sports " , i));
+         rockQuestions.addLast(createQuestion( "Rock ", i));
       }
    }
 
-   public String createRockQuestion(int index) {
-      return "Rock Question " + index;
+   public String createQuestion(String question, int index) {
+      return question + "Question" + index;
    }
 
    public boolean isPlayable() {
