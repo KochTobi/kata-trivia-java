@@ -36,7 +36,7 @@ public class Game implements IGame {
       return (howManyPlayers() >= 2);
    }
 
-   public boolean add(String playerName) {
+   public boolean addPlayer(String playerName) {
 
 
       players.add(playerName);
