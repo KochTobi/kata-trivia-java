@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-// REFACTOR ME
+//  REFACTOR ME
 public class GameBetter implements IGame {
    List<Player> players = new ArrayList<>();
    int[] places = new int[6];
