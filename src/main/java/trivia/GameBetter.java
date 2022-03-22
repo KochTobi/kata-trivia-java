@@ -29,7 +29,7 @@ public class GameBetter implements IGame {
    }
 
    public String createQuestion(String question, int index) {
-      return question + "Question" + index;
+      return question + "Question " + index;
    }
 
    public boolean isPlayable() {
