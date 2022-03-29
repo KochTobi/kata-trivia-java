@@ -21,15 +21,15 @@ public class GameBetter implements IGame {
 
    public GameBetter() {
       for (int i = 0; i < 50; i++) {
-         popQuestions.addLast(createQuestion("Pop " , i));
-         scienceQuestions.addLast(createQuestion("Science " , i));
-         sportsQuestions.addLast(createQuestion("Sports " , i));
-         rockQuestions.addLast(createQuestion( "Rock ", i));
+         popQuestions.addLast(createQuestion(QuestionCategory.POP , i));
+         scienceQuestions.addLast(createQuestion(QuestionCategory.SCIENCE , i));
+         sportsQuestions.addLast(createQuestion(QuestionCategory.SPORTS , i));
+         rockQuestions.addLast(createQuestion( QuestionCategory.ROCK, i));
       }
    }
 
-   public String createQuestion(String question, int index) {
-      return question + "Question " + index;
+   public String createQuestion(QuestionCategory questionCategory, int index) {
+      return questionCategory.label + " Question " + index;
    }
 
    public boolean isPlayable() {
@@ -166,4 +166,17 @@ public class GameBetter implements IGame {
    private boolean didPlayerWin() {
       return !(purses[currentPlayer] == 6);
    }
+
+   static enum QuestionCategory {
+      POP("Pop"),
+      SCIENCE("Science"),
+      SPORTS("Sports"),
+      ROCK("Rock");
+
+      QuestionCategory(String label) {
+         this.label = label;
+      }
+      final String label;
+   }
+
 }
