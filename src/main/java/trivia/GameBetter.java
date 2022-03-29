@@ -39,7 +39,6 @@ public class GameBetter implements IGame {
    @Override
    public boolean addPlayer(String playerName) {
       players.add(Player.create(playerName));
-      places[getNumberOfPlayers()] = 0;
       purses[getNumberOfPlayers()] = 0;
       inPenaltyBox[getNumberOfPlayers()] = false;
 
@@ -99,17 +98,19 @@ public class GameBetter implements IGame {
          System.out.println(rockQuestions.removeFirst());
    }
 
+   
 
    private String currentCategory() {
-      if (places[currentPlayer] == 0) return "Pop";
-      if (places[currentPlayer] == 4) return "Pop";
-      if (places[currentPlayer] == 8) return "Pop";
-      if (places[currentPlayer] == 1) return "Science";
-      if (places[currentPlayer] == 5) return "Science";
-      if (places[currentPlayer] == 9) return "Science";
-      if (places[currentPlayer] == 2) return "Sports";
-      if (places[currentPlayer] == 6) return "Sports";
-      if (places[currentPlayer] == 10) return "Sports";
+     int position = players.get(currentPlayer).getPosition();
+      if (position == 0) return "Pop";
+      if (position == 4) return "Pop";
+      if (position == 8) return "Pop";
+      if (position == 1) return "Science";
+      if (position == 5) return "Science";
+      if (position == 9) return "Science";
+      if (position == 2) return "Sports";
+      if (position == 6) return "Sports";
+      if (position == 10) return "Sports";
       return "Rock";
    }
 
