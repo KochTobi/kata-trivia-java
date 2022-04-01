@@ -60,7 +60,7 @@ public class GameBetter implements IGame {
             isGettingOutOfPenaltyBox = true;
 
             System.out.println(players.get(currentPlayer).getName() + " is getting out of the penalty box");
-            places[currentPlayer] = places[currentPlayer] + roll;
+            players.get(currentPlayer).advancePosition(roll);
             if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
             System.out.println(players.get(currentPlayer).getName()
@@ -75,7 +75,7 @@ public class GameBetter implements IGame {
 
       } else {
 
-         places[currentPlayer] = places[currentPlayer] + roll;
+         players.get(currentPlayer).advancePosition(roll);
          if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
          System.out.println(players.get(currentPlayer).getName()

@@ -31,8 +31,8 @@ public class Player {
     return position;
   }
 
-  public void setPosition(int position) {
-    this.position = position;
+  public void advancePosition(int roll) {
+    this.position += roll;
   }
   
 }
