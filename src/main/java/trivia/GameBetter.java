@@ -40,7 +40,6 @@ public class GameBetter implements IGame {
    public boolean addPlayer(String playerName) {
       players.add(Player.create(playerName));
       purses[getNumberOfPlayers()] = 0;
-      inPenaltyBox[getNumberOfPlayers()] = false;
 
       System.out.println(playerName + " was added");
       System.out.println("They are player number " + players.size());
@@ -55,7 +54,7 @@ public class GameBetter implements IGame {
       System.out.println(players.get(currentPlayer).getName() + " is the current player");
       System.out.println("They have rolled a " + roll);
 
-      if (inPenaltyBox[currentPlayer]) {
+      if (currentPlayer().isInPenaltyBox()) {
          if (roll % 2 != 0) {
             isGettingOutOfPenaltyBox = true;
 
@@ -87,6 +86,10 @@ public class GameBetter implements IGame {
 
    }
 
+   private Player currentPlayer() {
+      return players.get(currentPlayer);
+   }
+
    private void askQuestion() {
       if (currentCategory() == "Pop")
          System.out.println(popQuestions.removeFirst());
@@ -114,7 +117,7 @@ public class GameBetter implements IGame {
    }
 
    public boolean wasCorrectlyAnswered() {
-      if (inPenaltyBox[currentPlayer]) {
+      if (currentPlayer().isInPenaltyBox()) {
          if (isGettingOutOfPenaltyBox) {
             System.out.println("Answer was correct!!!!");
             purses[currentPlayer]++;
@@ -155,7 +158,7 @@ public class GameBetter implements IGame {
    public boolean wrongAnswer() {
       System.out.println("Question was incorrectly answered");
       System.out.println(players.get(currentPlayer).getName() + " was sent to the penalty box");
-      inPenaltyBox[currentPlayer] = true;
+      currentPlayer().moveToPenaltyBox();
 
       currentPlayer++;
       if (currentPlayer == players.size()) currentPlayer = 0;

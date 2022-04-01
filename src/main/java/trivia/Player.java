@@ -6,13 +6,15 @@ public class Player {
 
   private int position;
   private int money;
+  private boolean inPenaltyBox;
   
-  private Player(String name, int position, int money) {
+  private Player(String name, int position, int money, boolean inPenaltyBox) {
     this.name = name;
+    this.inPenaltyBox = inPenaltyBox;
   }
   
   public static Player create(String name) {
-    return new Player(name, 0, 0);
+    return new Player(name, 0, 0, false);
   }
 
   public String getName() {
@@ -34,5 +36,16 @@ public class Player {
   public void advancePosition(int roll) {
     this.position += roll;
   }
-  
+
+  public void moveToPenaltyBox() {
+    this.inPenaltyBox = true;
+  }
+
+  public void leavePenaltyBox() {
+    this.inPenaltyBox = false;
+  }
+
+  public boolean isInPenaltyBox() {
+    return inPenaltyBox;
+  }
 }
