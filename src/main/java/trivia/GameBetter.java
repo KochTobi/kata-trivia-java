@@ -98,7 +98,6 @@ public class GameBetter implements IGame {
          System.out.println(rockQuestions.removeFirst());
    }
 
-   
 
    private String currentCategory() {
      int position = players.get(currentPlayer).getPosition();
