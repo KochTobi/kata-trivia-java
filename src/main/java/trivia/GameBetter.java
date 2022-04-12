@@ -7,7 +7,6 @@ import java.util.List;
 // REFACTOR ME
 public class GameBetter implements IGame {
    List<Player> players = new ArrayList<>();
-   int[] places = new int[6];
    boolean[] inPenaltyBox = new boolean[6];
 
    LinkedList popQuestions = new LinkedList();
@@ -17,6 +16,7 @@ public class GameBetter implements IGame {
 
    int currentPlayer = 0;
    boolean isGettingOutOfPenaltyBox;
+   private final int boardSize = 12;
 
    public GameBetter() {
       for (int i = 0; i < 50; i++) {
@@ -76,11 +76,10 @@ public class GameBetter implements IGame {
    }
 
    private void movePlayer(int roll) {
+      int destination = (getCurrentPlayer().getPlace() + roll) % boardSize;
 
-      getCurrentPlayer().setPlace(getCurrentPlayer().getPlace() + roll);
-      if (getCurrentPlayer().getPlace() > 11) {
-         getCurrentPlayer().setPlace(getCurrentPlayer().getPlace() - 12);
-      }
+      getCurrentPlayer().move(destination);
+
       System.out.println(players.get(currentPlayer).getName()
           + "'s new location is "
           + getCurrentPlayer().getPlace());

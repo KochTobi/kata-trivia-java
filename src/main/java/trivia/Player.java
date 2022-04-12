@@ -26,7 +26,8 @@ public class Player {
     return place;
   }
 
-  public void setPlace(int place) {
+  public void move(int place) {
     this.place = place;
   }
+
 }
