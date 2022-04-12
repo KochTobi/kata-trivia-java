@@ -1,6 +1,7 @@
 package trivia;
 
 public class Player {
+
   private int purse = 0;
   private final String name;
 
@@ -11,4 +12,13 @@ public class Player {
   public String getName() {
     return name;
   }
+
+  public int getPurse() {
+    return purse;
+  }
+
+  public void addCoin(){
+    purse++;
+  }
+
 }

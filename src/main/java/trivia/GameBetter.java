@@ -39,7 +39,6 @@ public class GameBetter implements IGame {
    public boolean add(String playerName) {
       players.add(new Player(playerName));
       places[howManyPlayers()] = 0;
-      purses[howManyPlayers()] = 0;
       inPenaltyBox[howManyPlayers()] = false;
 
       System.out.println(playerName + " was added");
@@ -116,10 +115,10 @@ public class GameBetter implements IGame {
       if (inPenaltyBox[currentPlayer]) {
          if (isGettingOutOfPenaltyBox) {
             System.out.println("Answer was correct!!!!");
-            purses[currentPlayer]++;
+            players.get(currentPlayer).addCoin();
             System.out.println(players.get(currentPlayer).getName()
                                + " now has "
-                               + purses[currentPlayer]
+                               + players.get(currentPlayer).getPurse()
                                + " Gold Coins.");
 
             boolean winner = didPlayerWin();
@@ -135,10 +134,10 @@ public class GameBetter implements IGame {
       } else {
 
          System.out.println("Answer was corrent!!!!");
-         purses[currentPlayer]++;
+         players.get(currentPlayer).addCoin();
          System.out.println(players.get(currentPlayer).getName()
                             + " now has "
-                            + purses[currentPlayer]
+                            + players.get(currentPlayer).getPurse()
                             + " Gold Coins.");
 
          boolean winner = didPlayerWin();
@@ -164,6 +163,6 @@ public class GameBetter implements IGame {
 
 
    private boolean didPlayerWin() {
-      return !(purses[currentPlayer] == 6);
+      return !(players.get(currentPlayer).getPurse() == 6);
    }
 }
