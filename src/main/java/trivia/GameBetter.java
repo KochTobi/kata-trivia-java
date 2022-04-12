@@ -8,7 +8,6 @@ import java.util.List;
 public class GameBetter implements IGame {
    List<Player> players = new ArrayList<>();
    int[] places = new int[6];
-   int[] purses = new int[6];
    boolean[] inPenaltyBox = new boolean[6];
 
    LinkedList popQuestions = new LinkedList();
@@ -59,14 +58,7 @@ public class GameBetter implements IGame {
             isGettingOutOfPenaltyBox = true;
 
             System.out.println(players.get(currentPlayer).getName() + " is getting out of the penalty box");
-            places[currentPlayer] = places[currentPlayer] + roll;
-            if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
-
-            System.out.println(players.get(currentPlayer).getName()
-                               + "'s new location is "
-                               + places[currentPlayer]);
-            System.out.println("The category is " + currentCategory());
-            askQuestion();
+            makePlayerTurn(roll);
          } else {
             System.out.println(players.get(currentPlayer).getName() + " is not getting out of the penalty box");
             isGettingOutOfPenaltyBox = false;
@@ -74,16 +66,25 @@ public class GameBetter implements IGame {
 
       } else {
 
-         places[currentPlayer] = places[currentPlayer] + roll;
-         if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
-
-         System.out.println(players.get(currentPlayer).getName()
-                            + "'s new location is "
-                            + places[currentPlayer]);
-         System.out.println("The category is " + currentCategory());
-         askQuestion();
+         makePlayerTurn(roll);
       }
 
+   }
+
+   private void makePlayerTurn(int roll) {
+      movePlayer(roll);
+      System.out.println("The category is " + currentCategory());
+      askQuestion();
+   }
+
+   private void movePlayer(int roll) {
+      places[currentPlayer] = places[currentPlayer] + roll;
+      if (places[currentPlayer] > 11) {
+         places[currentPlayer] = places[currentPlayer] - 12;
+      }
+      System.out.println(players.get(currentPlayer).getName()
+          + "'s new location is "
+          + places[currentPlayer]);
    }
 
    private void askQuestion() {
