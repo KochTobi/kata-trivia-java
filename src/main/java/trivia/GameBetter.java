@@ -37,7 +37,6 @@ public class GameBetter implements IGame {
 
    public boolean add(String playerName) {
       players.add(new Player(playerName));
-      places[howManyPlayers()] = 0;
       inPenaltyBox[howManyPlayers()] = false;
 
       System.out.println(playerName + " was added");
@@ -65,7 +64,6 @@ public class GameBetter implements IGame {
          }
 
       } else {
-
          makePlayerTurn(roll);
       }
 
@@ -78,13 +76,19 @@ public class GameBetter implements IGame {
    }
 
    private void movePlayer(int roll) {
-      places[currentPlayer] = places[currentPlayer] + roll;
-      if (places[currentPlayer] > 11) {
-         places[currentPlayer] = places[currentPlayer] - 12;
+
+      getCurrentPlayer().setPlace(getCurrentPlayer().getPlace() + roll);
+      if (getCurrentPlayer().getPlace() > 11) {
+         getCurrentPlayer().setPlace(getCurrentPlayer().getPlace() - 12);
       }
       System.out.println(players.get(currentPlayer).getName()
           + "'s new location is "
-          + places[currentPlayer]);
+          + getCurrentPlayer().getPlace());
+   }
+
+   private Player getCurrentPlayer() {
+      Player player = players.get(currentPlayer);
+      return player;
    }
 
    private void askQuestion() {
@@ -100,15 +104,15 @@ public class GameBetter implements IGame {
 
 
    private String currentCategory() {
-      if (places[currentPlayer] == 0) return "Pop";
-      if (places[currentPlayer] == 4) return "Pop";
-      if (places[currentPlayer] == 8) return "Pop";
-      if (places[currentPlayer] == 1) return "Science";
-      if (places[currentPlayer] == 5) return "Science";
-      if (places[currentPlayer] == 9) return "Science";
-      if (places[currentPlayer] == 2) return "Sports";
-      if (places[currentPlayer] == 6) return "Sports";
-      if (places[currentPlayer] == 10) return "Sports";
+      if (getCurrentPlayer().getPlace() == 0) return "Pop";
+      if (getCurrentPlayer().getPlace() == 4) return "Pop";
+      if (getCurrentPlayer().getPlace() == 8) return "Pop";
+      if (getCurrentPlayer().getPlace() == 1) return "Science";
+      if (getCurrentPlayer().getPlace() == 5) return "Science";
+      if (getCurrentPlayer().getPlace() == 9) return "Science";
+      if (getCurrentPlayer().getPlace() == 2) return "Sports";
+      if (getCurrentPlayer().getPlace() == 6) return "Sports";
+      if (getCurrentPlayer().getPlace() == 10) return "Sports";
       return "Rock";
    }
 
