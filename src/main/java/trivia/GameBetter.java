@@ -123,13 +123,11 @@ public class GameBetter implements IGame {
                                + " Gold Coins.");
 
             boolean winner = didPlayerWin();
-            currentPlayer++;
-            if (currentPlayer == players.size()) currentPlayer = 0;
+            selectNextPlayer();
 
             return winner;
          } else {
-            currentPlayer++;
-            if (currentPlayer == players.size()) currentPlayer = 0;
+            selectNextPlayer();
             return true;
          }
 
@@ -144,8 +142,7 @@ public class GameBetter implements IGame {
                             + " Gold Coins.");
 
          boolean winner = didPlayerWin();
-         currentPlayer++;
-         if (currentPlayer == players.size()) currentPlayer = 0;
+         selectNextPlayer();
 
          return winner;
       }
@@ -156,9 +153,13 @@ public class GameBetter implements IGame {
       System.out.println(players.get(currentPlayer).getName() + " was sent to the penalty box");
       inPenaltyBox[currentPlayer] = true;
 
+      selectNextPlayer();
+      return true;
+   }
+
+   private void selectNextPlayer() {
       currentPlayer++;
       if (currentPlayer == players.size()) currentPlayer = 0;
-      return true;
    }
 
 
