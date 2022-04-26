@@ -8,6 +8,8 @@ import java.util.List;
 public class GameBetter implements IGame {
    List<Player> players = new ArrayList<>();
 
+   GameBoard gameBoard = new GameBoard();
+
    LinkedList popQuestions = new LinkedList();
    LinkedList scienceQuestions = new LinkedList();
    LinkedList sportsQuestions = new LinkedList();
@@ -100,16 +102,7 @@ public class GameBetter implements IGame {
 
 
    private String currentCategory() {
-      if (getCurrentPlayer().getPlace() == 0) return "Pop";
-      if (getCurrentPlayer().getPlace() == 4) return "Pop";
-      if (getCurrentPlayer().getPlace() == 8) return "Pop";
-      if (getCurrentPlayer().getPlace() == 1) return "Science";
-      if (getCurrentPlayer().getPlace() == 5) return "Science";
-      if (getCurrentPlayer().getPlace() == 9) return "Science";
-      if (getCurrentPlayer().getPlace() == 2) return "Sports";
-      if (getCurrentPlayer().getPlace() == 6) return "Sports";
-      if (getCurrentPlayer().getPlace() == 10) return "Sports";
-      return "Rock";
+      return gameBoard.getCurrentCategory(currentPlayer().getPlace());
    }
 
    public boolean wasCorrectlyAnswered() {
