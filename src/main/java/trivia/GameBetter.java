@@ -7,7 +7,6 @@ import java.util.List;
 // REFACTOR ME
 public class GameBetter implements IGame {
    List<Player> players = new ArrayList<>();
-   boolean[] inPenaltyBox = new boolean[6];
 
    LinkedList popQuestions = new LinkedList();
    LinkedList scienceQuestions = new LinkedList();
@@ -15,7 +14,6 @@ public class GameBetter implements IGame {
    LinkedList rockQuestions = new LinkedList();
 
    int currentPlayer = 0;
-   boolean isGettingOutOfPenaltyBox;
    private final int boardSize = 12;
 
    public GameBetter() {
@@ -37,7 +35,6 @@ public class GameBetter implements IGame {
 
    public boolean add(String playerName) {
       players.add(new Player(playerName));
-      inPenaltyBox[howManyPlayers()] = false;
 
       System.out.println(playerName + " was added");
       System.out.println("They are player number " + howManyPlayers());
@@ -52,15 +49,15 @@ public class GameBetter implements IGame {
       System.out.println(currentPlayer().getName() + " is the current player");
       System.out.println("They have rolled a " + roll);
 
-      if (inPenaltyBox[currentPlayer]) {
+      if (currentPlayer().isInPenaltyBox()) {
          if (roll % 2 != 0) {
-            isGettingOutOfPenaltyBox = true;
+            currentPlayer().setInPenaltyBox(false);
 
             System.out.println(currentPlayer().getName() + " is getting out of the penalty box");
             makePlayerTurn(roll);
          } else {
             System.out.println(currentPlayer().getName() + " is not getting out of the penalty box");
-            isGettingOutOfPenaltyBox = false;
+            currentPlayer().setInPenaltyBox(true);
          }
 
       } else {
@@ -116,28 +113,11 @@ public class GameBetter implements IGame {
    }
 
    public boolean wasCorrectlyAnswered() {
-      if (inPenaltyBox[currentPlayer]) {
-         if (isGettingOutOfPenaltyBox) {
-            System.out.println("Answer was correct!!!!");
-            currentPlayer().addCoin();
-            System.out.println(currentPlayer().getName()
-                               + " now has "
-                               + currentPlayer().getPurse()
-                               + " Gold Coins.");
-
-            boolean winner = didPlayerWin();
-            selectNextPlayer();
-
-            return winner;
-         } else {
+      if (currentPlayer().isInPenaltyBox()) {
             selectNextPlayer();
             return true;
-         }
-
-
       } else {
-
-         System.out.println("Answer was corrent!!!!");
+         System.out.println("Answer was correct!!!!");
          currentPlayer().addCoin();
          System.out.println(currentPlayer().getName()
                             + " now has "
@@ -154,7 +134,7 @@ public class GameBetter implements IGame {
    public boolean wrongAnswer() {
       System.out.println("Question was incorrectly answered");
       System.out.println(currentPlayer().getName() + " was sent to the penalty box");
-      inPenaltyBox[currentPlayer] = true;
+      currentPlayer().setInPenaltyBox(true);
 
       selectNextPlayer();
       return true;

@@ -6,6 +6,8 @@ public class Player {
   private final String name;
   private int place = 0;
 
+  private boolean inPenaltyBox = false;
+
   public Player(String name) {
     this.name = name;
   }
@@ -30,4 +32,11 @@ public class Player {
     this.place = place;
   }
 
+  public void setInPenaltyBox(boolean inPenaltyBox) {
+    this.inPenaltyBox = inPenaltyBox;
+  }
+
+  public boolean isInPenaltyBox() {
+    return inPenaltyBox;
+  }
 }
