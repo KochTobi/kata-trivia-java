@@ -32,11 +32,15 @@ public class Player {
     this.place = place;
   }
 
-  public void setInPenaltyBox(boolean inPenaltyBox) {
-    this.inPenaltyBox = inPenaltyBox;
-  }
-
   public boolean isInPenaltyBox() {
     return inPenaltyBox;
+  }
+
+  public void leavePenaltyBox() {
+    this.inPenaltyBox = false;
+  }
+
+  public void moveToPenaltyBox() {
+    this.inPenaltyBox = true;
   }
 }

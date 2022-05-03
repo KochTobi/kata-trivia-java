@@ -52,13 +52,13 @@ public class GameBetter implements IGame {
 
       if (currentPlayer().isInPenaltyBox()) {
          if (roll % 2 != 0) {
-            currentPlayer().setInPenaltyBox(false);
+            currentPlayer().leavePenaltyBox();
 
             System.out.println(currentPlayer().getName() + " is getting out of the penalty box");
             makePlayerTurn(roll);
          } else {
             System.out.println(currentPlayer().getName() + " is not getting out of the penalty box");
-            currentPlayer().setInPenaltyBox(true);
+            currentPlayer().moveToPenaltyBox();
          }
 
       } else {
@@ -122,7 +122,7 @@ public class GameBetter implements IGame {
    public boolean wrongAnswer() {
       System.out.println("Question was incorrectly answered");
       System.out.println(currentPlayer().getName() + " was sent to the penalty box");
-      currentPlayer().setInPenaltyBox(true);
+      currentPlayer().moveToPenaltyBox();
 
       selectNextPlayer();
       return true;
