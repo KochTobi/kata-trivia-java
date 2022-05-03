@@ -16,7 +16,6 @@ public class GameBetter implements IGame {
    LinkedList<Question> rockQuestions = new LinkedList<>();
 
    int currentPlayer = 0;
-   private final int boardSize = 12;
 
    public GameBetter() {
       for (int i = 0; i < 50; i++) {
@@ -75,6 +74,7 @@ public class GameBetter implements IGame {
    }
 
    private void movePlayer(int roll) {
+      int boardSize = gameBoard.getSize();
       int destination = (getCurrentPlayer().getPlace() + roll) % boardSize;
 
       getCurrentPlayer().move(destination);

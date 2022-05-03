@@ -13,4 +13,8 @@ public class GameBoard {
         return gameBoard.get(place);
     }
 
+    public int getSize() {
+        return gameBoard.size();
+    }
+
 }
