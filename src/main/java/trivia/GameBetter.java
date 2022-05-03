@@ -75,18 +75,13 @@ public class GameBetter implements IGame {
 
    private void movePlayer(int roll) {
       int boardSize = gameBoard.getSize();
-      int destination = (getCurrentPlayer().getPlace() + roll) % boardSize;
+      int destination = (currentPlayer().getPlace() + roll) % boardSize;
 
-      getCurrentPlayer().move(destination);
+      currentPlayer().move(destination);
 
       System.out.println(currentPlayer().getName()
           + "'s new location is "
-          + getCurrentPlayer().getPlace());
-   }
-
-   private Player getCurrentPlayer() {
-      Player player = currentPlayer();
-      return player;
+          + currentPlayer().getPlace());
    }
 
    private void askQuestion() {
